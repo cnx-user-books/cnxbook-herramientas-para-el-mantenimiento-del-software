@@ -1,0 +1,203 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Reingeniería con Netbeans</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>b970c59b-6afb-4baa-ab03-086f6d0620ea</md:uuid>
+</metadata>
+  <content>
+    <para id="id25089503">La ingeniería inversa se ha definido como el proceso de construir especificaciones de un mayor nivel de abstracción partiendo del código fuente de un sistema software o cualquier otro producto (se puede utilizar como punto de partida cualquier otro elemento de diseño, etc.).</para>
+    <para id="id23777601">A continuación se detalle cómo realizar Ingeniería Inversa a través de NetBeans, para ello primero hay que tener instalado NetBeans 5.5.</para>
+    <section id="id24973716">
+      <title>Ejemplo práctico con Netbeans</title>
+      <section id="id24865263">
+        <title>Instalar NetBeans 5.5</title>
+        <para id="id19106659">En primer lugar tenemos que tener instalado NetBeans 5.5 (<link url="http://www.netbeans.org/">http://www.netbeans.org</link>). De esta Web se puede descargar e instalar. Se puede instalar en diferentes idiomas.</para>
+        <para id="id22428480">A continuación debemos de comprobar si tenemos instalado o no el módulo UML Modelling<footnote id="idp2483472">UML Modeling: Reverse Engineering Java Applications. Netbeans. Disponible en:   <link url="http://www.netbeans.org/kb/55/uml-re.html">http://www.netbeans.org/kb/55/uml-re.html</link>.</footnote>.</para>
+        <para id="id18431500">Para ello, primero hay que asegurarse de que no está ya instalado. Esto puede hacerse en la opción de menú “Herramientas|Gestor de módulos…”:</para>
+        <figure id="id21834134"><media id="idm2860800" alt=""><image src="../../media/Figura1.gif" mime-type="image/gif" height="263" width="566"/></media></figure>
+        <para id="id16996944">
+          <cite><cite-title>Figura 1. Módulos del Gestor de Módulos a través de la opción Herramientas</cite-title></cite>
+        </para>
+        <para id="id22432383">Una vez comprobado que el módulo de UMl no está instalado, utilizando el botón “Actualizar” y se podrán descargar actualizaciones disponibles.</para>
+        <figure id="id26098986">
+          <media id="idm17484624" alt=""><image src="../../media/graphics2-ac70.png" mime-type="image/png" height="426" width="590"/></media>
+        </figure>
+        <para id="id23778354">
+          <cite><cite-title>Figura 2. Instalar manualmente UML Modelling</cite-title></cite>
+        </para>
+        <para id="id22598414">Lo podemos encontrar para descargarlo en la Web e instalarlo manualmente en la siguiente dirección: <link url="http://www.linglom.com/downloads/uml-beta-nbms.zip">http://www.linglom.com/downloads/uml-beta-nbms.zip</link></para>
+        <para id="id21369318">Una vez descargado el fichero, lo descomprimimos y tendríamos que agregarlos en la siguiente pantalla:</para>
+        <figure id="id24890616">
+          <media id="idm9365424" alt=""><image src="../../media/graphics3-3e63.png" mime-type="image/png" height="426" width="590"/></media>
+        </figure>
+        <para id="id24034739">
+          <cite><cite-title>Figura 3. Visión de los módulos a instalar del fichero zip descomprimido.</cite-title></cite>
+        </para>
+        <figure id="id3065569">
+          <media id="idm2082416" alt=""><image src="../../media/graphics4-519f.png" mime-type="image/png" height="426" width="590"/></media>
+        </figure>
+        <para id="id11384529">
+          <cite><cite-title>Figura 4. Instalación de los módulos y verificación de la firma digital.</cite-title></cite>
+        </para>
+        <figure id="id24073839">
+          <media id="idm525280" alt=""><image src="../../media/graphics5-fbfd.png" mime-type="image/png" height="426" width="590"/></media>
+        </figure>
+        <para id="id18333980">
+          <cite><cite-title>Figura 5. Comprobación de los módulos instalados</cite-title></cite>
+        </para>
+        <para id="id14280366">
+          <cite><cite-title>Una vez instalado UML Modelling, volvemos a “Herramientas-Gestor de módulos” y lo comprobamos que está bien instalado.</cite-title></cite>
+        </para>
+        <figure id="id24839876">
+          <media id="idm6223968" alt=""><image src="../../media/graphics6-f72e.png" mime-type="image/png" height="430" width="590"/></media>
+        </figure>
+        <para id="id19077687">
+          <cite><cite-title>Figura 6. Comprobación de UML en el Gestor de módulos</cite-title></cite>
+        </para>
+      </section>
+      <section id="id24830656">
+        <title>Crear Diagrama de Uso con NetBeans 5.5</title>
+        <para id="id24988091">Creamos un nuevo proyecto, que denominamos UMLDemo. Para ello, vamos a: Archivo – Nuevo Proyecto: </para>
+        <figure id="id22572135">
+          <media id="idm1712576" alt=""><image src="../../media/graphics7-d83f.png" mime-type="image/png" height="407" width="590"/></media>
+        </figure>
+        <para id="id20135096">
+          <cite><cite-title>Figura 7. Realizamos un nuevo proyecto</cite-title></cite>
+        </para>
+        <figure id="id18790128"><media id="idm17970432" alt=""><image src="../../media/Figura8.gif" mime-type="image/gif" height="175" width="566"/></media></figure>
+        <para id="id11428108">
+          <cite><cite-title>Figura 8. El proyecto se va a denominar UMLDemo</cite-title></cite>
+        </para>
+        <figure id="id24825562">
+          <media id="idm18245696" alt=""><image src="../../media/graphics9-a472.png" mime-type="image/png" height="433" width="590"/></media>
+        </figure>
+        <para id="id21462263">
+          <cite><cite-title>Figura 9. Seleccionamos el Diagrama de Caso de uso, cuyo nombre será UseCaseDiagram</cite-title></cite>
+        </para>
+        <figure id="id9334843">
+          <media id="idm6889872" alt=""><image src="../../media/graphics10.png" mime-type="image/png" height="426" width="590"/></media>
+        </figure>
+        <para id="id16026982">
+          <cite><cite-title>Figura 10. Pantalla Inicial para crear nuestro Diagrama de Caso de Uso</cite-title></cite>
+        </para>
+        <para id="id25008078">A continuación realizamos el siguiente diagrama de caso de uso:</para>
+        <figure id="id24893421">
+          <media id="idm4122240" alt=""><image src="../../media/graphics11.png" mime-type="image/png" height="348" width="363"/></media>
+        </figure>
+        <para id="id21831573">
+          <cite><cite-title>Figura 11. Ejemplo de un Diagrama de Caso de uso</cite-title></cite>
+        </para>
+      </section>
+      <section id="id24830654">
+        <title>Generar código con NetBeans 5.5</title>
+        <para id="id16329364">En nuestro ejemplo anterior (UMLDemo), vamos a realizar otro tipo de Diagrama, el Diagrama de clases. </para>
+        <figure id="id24618180">
+          <media id="idm3002864" alt=""><image src="../../media/graphics12.png" mime-type="image/png" height="325" width="591"/></media>
+        </figure>
+        <para id="id18235664">
+          <cite><cite-title>Figura 12. Crear Diagrama de clases</cite-title></cite>
+        </para>
+        <para id="id19165264">Y realizamos el siguiente diagrama, añadimos los atributos y operaciones:</para>
+        <figure id="id11346083">
+          <media id="idm280032" alt=""><image src="../../media/graphics13.png" mime-type="image/png" height="425" width="590"/></media>
+        </figure>
+        <para id="id23750346">
+          <cite><cite-title>Figura 13. Ejemplo de Diagrama de clases</cite-title></cite>
+        </para>
+        <para id="id24350396">Creamos el proyecto, dónde vamos a generar el Código. A esto proyecto le vamos a llamar EjercicioCodigo:</para>
+        <figure id="id22297742">
+          <media id="idp1651360" alt=""><image src="../../media/graphics14.png" mime-type="image/png" height="407" width="590"/></media>
+        </figure>
+        <para id="id11396540">
+          <cite><cite-title>Figura 14. Crear proyecto Java</cite-title></cite>
+        </para>
+        <figure id="id18576599">
+          <media id="idm2210720" alt=""><image src="../../media/graphics15.png" mime-type="image/png" height="407" width="590"/></media>
+        </figure>
+        <para id="id24580219">
+          <cite><cite-title>Figura 15. Nombre del Proyecto</cite-title></cite>
+        </para>
+        <para id="id16840340">A continuación, en UMLDemo, botón derecho, Generamos Código (Generate Code…)</para>
+        <figure id="id25234051">
+          <media id="idm7084384" alt=""><image src="../../media/graphics16.png" mime-type="image/png" height="298" width="275"/></media>
+        </figure>
+        <para id="id18344798">
+          <cite><cite-title>Figura 16. Nombre del Proyecto</cite-title></cite>
+        </para>
+        <figure id="id23705603">
+          <media id="idm17482688" alt=""><image src="../../media/graphics17.png" mime-type="image/png" height="228" width="576"/></media>
+        </figure>
+        <para id="id25186161">
+          <cite><cite-title>Figura 17. Ubicación del Código que vamos a generar</cite-title></cite>
+        </para>
+        <para id="id25240195">Y el código que se genera en EjercicioCodigo es el siguiente:</para>
+        <figure id="id24530156">
+          <media id="idp1412208" alt=""><image src="../../media/graphics18.png" mime-type="image/png" height="259" width="426"/></media>
+        </figure>
+        <para id="id25000357">
+          <cite><cite-title>Figura 18. Código generado</cite-title></cite>
+        </para>
+      </section>
+      <section id="id24716580">
+        <title>Ingeniería Inversa con NetBeans 5.5</title>
+        <para id="id19692331">Vamos a realizar Ingeniería Inversa con NetBeans. Para ello creamos el siguiente proyecto:</para>
+        <figure id="id11369597">
+          <media id="idm3917376" alt=""><image src="../../media/graphics19.png" mime-type="image/png" height="407" width="590"/></media>
+        </figure>
+        <para id="id24965580">
+          <cite><cite-title>Figura 19. Creamos Proyecto para Ingeniería Inversa cuyo nombre será UMLIngenieriaInversa</cite-title></cite>
+        </para>
+        <figure id="id23869790">
+          <media id="idm5168512" alt=""><image src="../../media/graphics20.png" mime-type="image/png" height="414" width="590"/></media>
+        </figure>
+        <para id="id24852814">
+          <cite><cite-title>Figura 20. En Java Project ponemos nuestro Código Java</cite-title></cite>
+        </para>
+        <para id="id24754236">
+          <figure id="id24596974">
+            <media id="idp1939584" alt=""><image src="../../media/graphics21.png" mime-type="image/png" height="236" width="238"/></media>
+          </figure>
+        </para>
+        <para id="id24826121">
+          <cite><cite-title>Figura 21. Estructura de nuestras carpetas</cite-title></cite>
+        </para>
+        <para id="id23214079">
+          <cite><cite-title>Seleccionamos nuestra carpeta DicomImage y botón derecho Create Diagram From Selected Elements</cite-title></cite>
+        </para>
+        <para id="id25982269">
+          <figure id="id21554395">
+            <media id="idm5294848" alt=""><image src="../../media/graphics22.png" mime-type="image/png" height="264" width="251"/></media>
+          </figure>
+        </para>
+        <para id="id22490856">
+          <cite><cite-title>Figura 22. Seleccionamos la opción</cite-title></cite>
+        </para>
+        <figure id="id23431354">
+          <media id="idm3159552" alt=""><image src="../../media/graphics23.png" mime-type="image/png" height="433" width="590"/></media>
+        </figure>
+        <para id="id24833228">
+          <cite><cite-title>Figura 23. Elegimos el diagrama de Clases</cite-title></cite>
+        </para>
+        <para id="id24679067">Y obtenemos nuestro Diagrama de Clase.</para>
+        <figure id="id25728480">
+          <media id="idm730912" alt=""><image src="../../media/graphics24.png" mime-type="image/png" height="425" width="590"/></media>
+        </figure>
+        <para id="id24801569">
+          <cite><cite-title>Figura 24. Realización de la Ingeniería Inversa</cite-title></cite>
+        </para>
+      </section>
+    </section>
+    <section id="id23810290">
+      <title>Ejemplo práctico de Reingeniería del Software</title>
+      <para id="id24569871">Un ejemplo sencillo para poder dar un panorama de lo que se trata reingeniería de software sería un sistema de un mini súper.</para>
+      <para id="id24801093">En este sistema se tienen:</para>
+      <list list-type="bulleted" id="id22005643">
+        <item>Bases de datos de los productos: en la cual viene toda la información de los productos en diferentes campos como precio de compra, precio de venta, descripción (nombre, marca, tipo, etc.), descuentos, inventario ,proveedor, clasificación, etc. Con 200 registros.</item>
+        <item>Bases de datos de los trabajadores: aquí también existen diferentes campos por cada registro como salario, horario, descripción (nombre, dirección, teléfono, antigüedad, etc.), puesto, etc, con 20 registros.</item>
+      </list>
+      <para id="id23943441">Al paso del tiempo este sistema se ha ido modificando debido a que las demandas de la tienda fueron cambiando. Se modificaron elementos como: la creación de una base de datos especial para proveedores la cual tenía interacción con la de productos; se contrataron varias empresas de recursos humanos para la reclutación de su personal, por lo tanto se creó un registro de estas y se hizo una interacción entre estas con los trabajadores; como había descuentos especiales en los productos para los trabajadores se hizo una interacción de la base de datos de trabajadores con la de productos. Aumentaron los trabajadores de 20 a 120, y los productos de 200 a 500.</para>
+      <para id="id24801917">Todas estas modificaciones se hicieron como se fue requiriendo, y por lo tanto solo se crearon parches en el sistema, lo que hizo que el sistema: se fuera alentando cada vez más, no tuviera una buena presentación, no fuera fácil su mantenimiento, etc.</para>
+      <para id="id23119907">Por lo tanto se tenía que modificar totalmente el sistema para una mejor manutención para lo cual utilizamos la reingeniería de software, ya que con esto no tendríamos que reconstruir el software totalmente sino que podíamos utilizarlo como base para la construcción de un software con reingeniería.</para>
+      <para id="id24894172">En primer lugar se decide traducir el código a una versión más actualizada del mismo lenguaje, esto con el fin de que nuestro programa sea más versátil, para esto se utilizo una herramienta para que la traducción se hiciera de manera automática. Utilizamos las herramientas de ingeniería inversa para poder extraer toda la información posible del software inicial para obtener el diseño del nuevo sistema, el cual tiene que tener las mismas funciones del anterior con la misma interfaz. Con el nuevo diseño y el código fuente, ya traducido a un lenguaje adecuado, se empezó a reestructurar el programa para que la rapidez en sus funciones fuera óptima, para esto se necesitaba que existiera una buena modulación y así se empezó a establecer módulos de los pequeños programas que se interrelacionaran, para conseguir tener varios módulos con fines similares, ya estando bien la modulación sería más fácil poder implantar una estructura adecuada. Finalmente se hizo la depuración de los datos, creando una base de datos general con apuntadores a datos, con una buena clasificación e interacción entre estos. Al relacionar los programas con nuestra base de datos generada tendremos como resultado un nuevo sistema creado con reingeniería el cual va a ser más rápido, más mantenible, actualizado, y con capacidad de crecimiento sin estropear la arquitectura original.</para>
+      <para id="id24893368">Con esto tendremos una optimización de costes y eficiencia.</para>
+    </section>
+  </content>
+</document>

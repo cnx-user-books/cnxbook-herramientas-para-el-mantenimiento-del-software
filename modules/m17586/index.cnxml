@@ -1,0 +1,198 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Refactoring con Netbeans</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>b6cd4ee4-52d3-4454-bc98-18d962a35f9c</md:uuid>
+</metadata>
+  <content>
+    <para id="id6470161">Refactoring es el proceso de llevar a cabo cambios en su código sin afectar el comportamiento de la aplicación. </para>
+    <section id="id19624104">
+      <title>Caso práctico de Refactoring</title>
+      <para id="id17510059">Tengo una aplicación bancaria que ya fue correctamente implementada, esta aplicación usa extensivamente una clase llamada Transacción, la cual posee una operación cuya firma es: </para>
+      <para id="id18246327">public void asignarCtaCorriente(CuentaCorriente cc);</para>
+      <para id="id14921973">Esta operación es invocada una gran cantidad de veces por distintas operaciones en nuestra aplicación. </para>
+      <para id="id19648114">El programa es que se debe cambiar la firma de la operación para homogenizar el estándar de nomenclatura establecido por la empresa que desarrolló la aplicación. La nueva firma debería ser: </para>
+      <para id="id20506957">public void asignarCuentaCorriente(CuentaCorriente cc);</para>
+      <para id="id18180553">¿Cuál es la solución? Debemos iniciar el proceso de refactoring en nuestra aplicación para reflejar este cambio. Modificaremos la firma en la clase Transacción y luego modificar en todo el proyecto cada una de las invocaciones. </para>
+      <para id="id19608000">Si la aplicación es realmente grande, implicará un gran esfuerzo llevar a cabo este cambio manualmente. Probablemente se introduzcan errores en la aplicación. </para>
+    </section>
+    <section id="id16066254">
+      <title>Refactoring en NetBeans 5.5</title>
+      <para id="id17527598">A medida que se desarrolla una aplicación con NetBeans, de forma transparente para el programador se genera un repositorio de metadata del código que el programador genera. La metadata se podría definir brevemente como “datos que describen otros datos”, por lo cual NetBeans puede contar con esta información para realizar cambios sobre los fuentes automáticamente. Gracias a este repositorio de metadata que NetBeans mantiene es posible automatizar muchas tareas de refactoring, por ejemplo, en el caso que describimos anteriormente, NetBeans se encarga de cambiar la firma de la operación de la clase Cuenta, buscar todas las invocaciones y modificarlas. Adicionalmente NetBeans provee un informe del impacto que tendrá el proceso de refactoring, para permitir al programador tomar decisiones respecto a este proceso. Luego de desplegado dicho informe se puede iniciar el proceso de refactoring de acuerdo a las decisiones tomadas por el programador. </para>
+    </section>
+    <section id="id17689574">
+      <title>Menú de Refactoring en NetBeans</title>
+      <para id="id12231732">Teniendo las siguientes clases de Java en nuestro proyecto NetBeans (proyecto llamado PruebaCirculo):</para>
+      <para id="id18233847">Circulo.java</para>
+      <para id="id18671489"><code display="block" id="idp7825760">public class Circulo {</code></para>
+      <para id="id18233834"><code display="block" id="idm1492128">  private int x; </code></para>
+      <para id="id19526495"><code display="block" id="idp8977760">  private int y; </code></para>
+      <para id="id84738492"><code display="block" id="idp4325200">  private double radio; </code></para>
+      <para id="id5158764"><code display="block" id="idm7515616">   public Circulo()</code></para>
+      <para id="id21687164"><code display="block" id="idm8153360">  {</code></para>
+      <para id="id21178708"><code display="block" id="idm6633856">  }</code></para>
+      <para id="id18246654"><code display="block" id="idp10014576">  // constructor</code></para>
+      <para id="id21684664"><code display="block" id="idp2674208">  public Circulo( int valorX, int valorY, double valorRadio )</code></para>
+      <para id="id21671894"><code display="block" id="idm7757520">  {</code></para>
+      <para id="id18386404"><code display="block" id="idp6596000">     x = valorX;</code></para>
+      <para id="id17904554"><code display="block" id="idp4932224">     y = valorY;</code></para>
+      <para id="id13813939"><code display="block" id="idp10711376">     establecerRadio( valorRadio );</code></para>
+      <para id="id16099281"><code display="block" id="idp5660544">  } </code></para>
+      <para id="id12966452"><code display="block" id="idp3316400">  public void establecerX( int valorX )</code></para>
+      <para id="id16116015"><code display="block" id="idm7340560">  {</code></para>
+      <para id="id8029399"><code display="block" id="idp4395520">      x = valorX;</code></para>
+      <para id="id8130347"><code display="block" id="idp3279440">  } </code></para>
+      <para id="id8473849"><code display="block" id="idp10715840">  public int obtenerX()</code></para>
+      <para id="id18068874"><code display="block" id="idp11075904">  {</code></para>
+      <para id="id11718279"><code display="block" id="idp12682416">      return x;</code></para>
+      <para id="id74839483"><code display="block" id="idp10632960">  }</code></para>
+      <para id="id17928826"><code display="block" id="idp8958528">  public void establecerY( int valorY )</code></para>
+      <para id="id12030159"><code display="block" id="idp10877888">  {</code></para>
+      <para id="id18093950"><code display="block" id="idp8972080">      y = valorY;</code></para>
+      <para id="id19270032"><code display="block" id="idp9194640">  }</code></para>
+      <para id="id18366905"><code display="block" id="idp5230752">  public int obtenerY()</code></para>
+      <para id="id20436628"><code display="block" id="idp9941056">  {</code></para>
+      <para id="id21688023"><code display="block" id="idp7637312">      return y;</code></para>
+      <para id="id21688083"><code display="block" id="idp11650944">  }</code></para>
+      <para id="id20973327"><code display="block" id="idp8621648">  public void establecerRadio( double valorRadio )</code></para>
+      <para id="id10872752"><code display="block" id="idp12600896">  {</code></para>
+      <para id="id17978460"><code display="block" id="idp12692208">      radio = ( valorRadio &lt; 0.0 ? 0.0 : valorRadio );</code></para>
+      <para id="id19574332"><code display="block" id="idp12268080">  }</code> </para>
+      <para id="id16208389"><code display="block" id="idp4305712">  public double obtenerRadio()</code></para>
+      <para id="id14515261"><code display="block" id="idp6548864">  {</code></para>
+      <para id="id15109848"><code display="block" id="idp2461296">      return radio;</code></para>
+      <para id="id74838473"><code display="block" id="idp3714576">  }</code></para>
+      <para id="id18390634"><code display="block" id="idp8972432">  public double obtenerDiametro()</code></para>
+      <para id="id21517052"><code display="block" id="idp11497920">  {</code></para>
+      <para id="id12274777"><code display="block" id="idp9966288">      return 2 * radio;</code></para>
+      <para id="id16084492"><code display="block" id="idp9269856">  }</code></para>
+      <para id="id18169492"><code display="block" id="idp3714944">  public double obtenerCircunferencia()</code></para>
+      <para id="id21175686"><code display="block" id="idp4048624">  {</code></para>
+      <para id="id17207917"><code display="block" id="idp3679152">      return Math.PI * obtenerDiametro();</code></para>
+      <para id="id8199943"><code display="block" id="idp10500944">  }</code> </para>
+      <para id="id21250531"><code display="block" id="idp6564544">  public double obtenerArea()</code></para>
+      <para id="id17859684"><code display="block" id="idp11951504">  {</code></para>
+      <para id="id21683370"><code display="block" id="idp3586848">      return Math.PI * radio * radio;</code></para>
+      <para id="id83748392"><code display="block" id="idp6185648">  }</code></para>
+      <para id="id20666963"><code display="block" id="idp2621088">  public String toString()</code></para>
+      <para id="id16026934"><code display="block" id="idp10014112">  {</code></para>
+      <para id="id7904350"><code display="block" id="idp3691088">      return "Centro = [" + x + ", " + y + "]; Radio = " + radio;</code></para>
+      <para id="id8133183"><code display="block" id="idp12083184">  } </code></para>      <para id="id11234664">PruebaCirculo.java</para>
+            <para id="id10279662"><code display="block" id="idp12321200">import java.text.DecimalFormat;</code></para>
+      <para id="id16143063"><code display="block" id="idp12262032">import javax.swing.JOptionPane;</code></para>
+      <para id="id21517833"><code display="block" id="idp12637600">public class PruebaCirculo {</code></para>
+      <para id="id16082276"><code display="block" id="idp8536816">  public static void main( String[] args ) </code></para>
+      <para id="id18671342"><code display="block" id="idp9988496">      Circulo circulo = new Circulo( 37, 43, 2.5 );</code></para>
+      <para id="id9150054"><code display="block" id="idp4279328">      String salida = "La coordenada X es " + circulo.obtenerX() + </code></para>
+      <para id="id11030356"><code display="block" id="idp4677920">        "\nLa coordenada Y es " + circulo.obtenerY() + </code></para>
+      <para id="id19586942"><code display="block" id="idp7787664">        "\nEl radio es " + circulo.obtenerRadio();</code></para>
+      <para id="id7370291"><code display="block" id="idm7496128">      circulo.establecerX( 35 );</code></para>
+      <para id="id17666364"><code display="block" id="idp7510480">      circulo.establecerY( 20 );</code></para>
+      <para id="id20436555"><code display="block" id="idp10700160">      circulo.establecerRadio( 4.25 );</code></para>
+      <para id="id19446454"><code display="block" id="idp9800256">      salida += "\n\nLa nueva ubicación y el radio del círculo son\n" +</code></para>
+      <para id="id14850401"><code display="block" id="idp4675808">        circulo.toString();</code></para>
+      <para id="id18548094"><code display="block" id="idp3540704">      DecimalFormat dosDigitos = new DecimalFormat( "0.00" );</code></para>
+      <para id="id15651035"><code display="block" id="idp3416448">      salida += "\nEl diámetro es " + </code></para>
+      <para id="id15962013"><code display="block" id="idp12377296">        dosDigitos.format( circulo.obtenerDiametro() );</code></para>
+      <para id="id15761884"><code display="block" id="idp13878752">      salida += "\nLa circunferencia es " +</code></para>
+      <para id="id8171809"><code display="block" id="idp11025744">        dosDigitos.format( circulo.obtenerCircunferencia() );</code></para>
+      <para id="id17637455"><code display="block" id="idp623824">      salida += "\nEl área es " + dosDigitos.format( circulo.obtenerArea() );</code></para>
+      <para id="id13089252"><code display="block" id="idp4430416">      JOptionPane.showMessageDialog( null, salida ); </code></para>
+      <para id="id18492774"><code display="block" id="idp12581200">      System.exit( 0 );</code></para>
+      <para id="id17569541"><code display="block" id="idp7468160">  } // fin de main</code></para>
+      <para id="id21087630"><code display="block" id="idp5514928">} // fin de la clase PruebaCirculo</code></para>
+      <para id="id20149184">La estructura de nuestras carpetas en el proyecto NetBeans será la siguiente:</para>
+      <figure id="id16945291">
+        <media id="idp9948608" alt=""><image src="../../media/graphics1-1364.png" mime-type="image/png" height="329" width="590"/></media>
+      </figure>
+      <para id="id13274002">
+        <cite><cite-title>Figura 1. Visión del proyecto NetBeans con las clases java</cite-title></cite>
+      </para>
+      <para id="id17450147">Si nos situamos en cualquiera de nuestras clases y botón derecho, obtenemos el siguiente menú, donde podemos observar que tenemos la opción refactorizar:</para>
+      <figure id="id13667401">
+        <media id="idm8249936" alt=""><image src="../../media/graphics2-6185.png" mime-type="image/png" height="478" width="590"/></media>
+      </figure>
+      <para id="id10988784">
+        <cite><cite-title>Figura 2. Menú de Refactorizar</cite-title></cite>
+      </para>
+      <para id="id19789033">A continuación, se encuentra una breve descripción de las diferentes opciones del menú:</para>
+      <list list-type="bulleted" id="id15530516">
+        <item>Renombrar → Cambia el nombre de una clase, variable o método. Adicionalmente modifica todo el código del proyecto para referenciar al nuevo nombre. </item>
+      </list>
+      <figure id="id17625238">
+        <media id="idm8248240" alt=""><image src="../../media/graphics3-c727.png" mime-type="image/png" height="293" width="591"/></media>
+      </figure>
+      <para id="id21204418">
+        <cite><cite-title>Figura 3. Opción renombrar</cite-title></cite>
+      </para>
+      <para id="id21359947">
+        <cite><cite-title>Cambiamos el nombre Circulo por Circulitos y observamos los cambios en el código que donde ponía Circulo ahora pone Circulitos:</cite-title></cite>
+      </para>
+      <para id="id17377168">
+        <figure id="id16728859">
+          <media id="idp6564096" alt=""><image src="../../media/graphics4-1f05.png" mime-type="image/png" height="293" width="591"/></media>
+        </figure>
+      </para>
+      <para id="id19526860">
+        <cite><cite-title>Figura 4. Cambios al aplicar Renombrar</cite-title></cite>
+      </para>
+      <list list-type="bulleted" id="id15963538">
+        <item>Cambiar parámetros de un método → Permite agregar, eliminar, modificar o cambiar el orden de los parámetros de un método, al igual que su modificador de acceso (private o public). </item>
+        <item>Encapsular campos → Es muy común tener que acceder a los campos de una clase por medio de operaciones del tipo: </item>
+      </list>
+      <para id="id21177780">public set&lt;nombre del campo&gt;(...)</para>
+      <para id="id16635882">public get&lt;nombre del campo&gt;()</para>
+      <para id="id4530849">Es una tarea muy tediosa, por lo cual esta operación permite que el programador solo deba implementar los campos, delegando a NetBeans la tarea de “encapsularlos”. También es posible que todo código del proyecto que accede directamente al campo, pase automáticamente a utilizar el “setter” o el “getter” determinado. </para>
+      <list list-type="bulleted" id="id17618965">
+        <item>Ascender métodos o campos → Permite subir un método o campo a otra clase de la cual hereda la clase que contiene al método o campo que deseamos subir. </item>
+        <item>Descender clases anidadas, métodos o campos → Permite bajar una clase anidada, método o campo a otra clase la cual hereda de la clase que contiene a la clase anidada, método o campo que deseamos bajar.</item>
+        <item>Mover una clase → Mueve una clase a otro package o dentro de otra clase. Adicionalmente modifica todo el código del proyecto para referenciar al nuevo lugar donde se movió la clase. </item>
+      </list>
+      <figure id="id19373894">
+        <media id="idp11477024" alt=""><image src="../../media/graphics5-11ab.png" mime-type="image/png" height="293" width="591"/></media>
+      </figure>
+      <para id="id21322155">
+        <cite><cite-title>Figura 5. Opción Mover clase </cite-title></cite>
+      </para>
+      <list list-type="bulleted" id="id21435770">
+        <item>Convertir una clase anónima anidada a una clase anidada → Crea una nueva clase anidada, la cual tendrá un nombre y un constructor. La clase anónima anidada será sustituida por esta nueva clase anidada.</item>
+        <item>Extraer una interfase → Permite seleccionar cuales métodos públicos no estáticos de una clase o interfase, irán a parar a una nueva interfase. La clase de la cual fue extraída la interfase implementará la nueva interfase creada. La interfase de la cual fue extraída la interfase extenderá la nueva interfase. </item>
+      </list>
+      <figure id="id17276250">
+        <media id="idp11851232" alt=""><image src="../../media/graphics6-1a85.png" mime-type="image/png" height="480" width="591"/></media>
+      </figure>
+      <para id="id7343980">
+        <cite><cite-title>Figura 6. Opción Extraer interfaz</cite-title></cite>
+      </para>
+      <list list-type="bulleted" id="id7615186">
+        <item>Extraer una superclase → Despliega al programador los métodos y campos que se pueden mover a una superclase. El programador selecciona cuales desea mover y NetBeans creará una nueva clase abstracta que contendrá dichos campos y métodos, también hará que la clase refactorizada la extienda. </item>
+      </list>
+      <figure id="id12399907">
+        <media id="idp11816464" alt=""><image src="../../media/graphics7-f6d5.png" mime-type="image/png" height="480" width="591"/></media>
+      </figure>
+      <para id="id16555805">
+        <cite><cite-title>Figura 7. Opción Extraer superclase</cite-title></cite>
+      </para>
+      <list list-type="bulleted" id="id21617698">
+        <item>Usar supertipo cuando sea posible → Despliega al programador todas las clases que extiende la clase actual. El programador seleccionará una, y NetBeans buscará en todo el proyecto referencias a la clase que se quiere refactorizar, si encuentra referencias, determinará si es posible utilizar la superclase seleccionada. </item>
+      </list>
+      <figure id="id16126144">
+        <media id="idp13735968" alt=""><image src="../../media/graphics8-b0dd.png" mime-type="image/png" height="293" width="591"/></media>
+      </figure>
+      <para id="id18876099">
+        <cite><cite-title>Figura 8. Opción Usar supertipo cuando sea posible</cite-title></cite>
+      </para>
+      <list list-type="bulleted" id="id21377561">
+        <item>Eliminación seguro → Cuando eliminamos un método o clase, debemos garantizarnos de que nadie más lo utilice en el proyecto. Esta operación verifica y notifica las referencias encontradas, proveyendo de mecanismos para que fácilmente el programador pueda eliminar una a una las referencias, para finalmente llevar a cabo la operación de borrado de modo seguro.</item>
+      </list>
+      <figure id="id21171000">
+        <media id="idp6462224" alt=""><image src="../../media/graphics9-d251.png" mime-type="image/png" height="293" width="591"/></media>
+      </figure>
+      <para id="id17180838">
+        <cite><cite-title>Figura 9. Opción Eliminación segura</cite-title></cite>
+      </para>
+      <list list-type="bulleted" id="id8375237">
+        <item>Introducir constantes, variables, campos o métodos → El programador selecciona un fragmento de código, y luego presiona las teclas &lt;alt&gt;+&lt;Enter&gt;. NetBeans desplegará varias opciones útiles, como encapsular ese fragmento en un método y referenciar al método, anidarse en while, if, etc. </item>
+      </list>
+      <para id="id19243931">Siempre que sea posible, utilizar las herramientas de refactoring que NetBeans provee, de este modo no solo será mucho más sencillo este tipo de procedimiento, sino que además ejecutaremos un proceso seguro mediante el cual no introduciremos errores humanos. </para>
+    </section>
+  </content>
+</document>
